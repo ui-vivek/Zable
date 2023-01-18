@@ -1,0 +1,24 @@
+header{
+    background-color: darkorange;
+    ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: nowrap;
+        padding: 4px 12px;
+        li{
+            list-style: none;
+            input{
+                border: 0.5px solid gray;
+                border-radius: 4px;
+                background-color: cyan;
+                padding: 8px;
+                width: 150%;
+            }
+            a{
+               text-decoration: none;
+            }
+        }
+    }
+}

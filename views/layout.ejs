@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>
+            <%= title %> 
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@2.47.0/dist/full.css" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/footer.css">
+        <%- style %> 
+    </head>
+    <body>
+        <%- include('_header') %> 
+      
+        <main id="layout-main">
+            <%- body %>
+        </main> 
+        
+        <%- include('_footer') %> 
+
+        <%- script %> 
+       
+    </body>
+</html>
