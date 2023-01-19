@@ -1,11 +1,13 @@
 <h1>Zable / <%= title %> </h1>
 
-<section>
+<section id="feed-post">
   <h4>Post</h4>
+  <% if(locals.user){ %> 
   <form action="/post/create" id="new-post-form" method="post">
     <textarea name="content" cols="30" rows="3" placeholder="Type hear..."></textarea>
     <input type="submit" value="Post">
   </form>
+  <% } %> 
 
   <div id="posts-list-container">
     <ul>
