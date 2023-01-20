@@ -10,7 +10,13 @@ module.exports.home=function(req,res){
     //     })
     // })
     // return res.render('home',{title:'Zable'})
-    Post.find({}).populate('user').exec(function(err, posts){
+    Post.find({}).populate('user')
+    .populate({
+        path:'comments',
+        populate:{
+            path:'user'
+        }
+    }).exec(function(err, posts){
         return res.render('home', {
             title: "Zable | home",
             posts: posts
