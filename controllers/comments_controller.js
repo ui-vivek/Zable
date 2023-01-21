@@ -19,13 +19,14 @@ module.exports.create = function(req, res){
 }
 
 module.exports.destroy = function(req, res){
-    Post.findById(req.params.id, function(err, comment){
+    Comment.findById(req.params.id, function(err, comment){
         // .id means converting the object id into string
         if (comment.user == req.user.id){
+            let postId=comment.post;
             comment.remove();
-            Comment.deleteOne({comment: req.params.id}, function(err){
-                return res.redirect('back');
-            });
+            Post.findByIdAndUpdate(postId,{$pull:{comments :req.params.id}},function(err,post){
+                return res.redirect('back')
+            })
         }else{
             return res.redirect('back');
         }
