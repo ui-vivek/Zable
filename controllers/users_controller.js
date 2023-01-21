@@ -10,7 +10,7 @@ module.exports.user=function(req,res){
 module.exports.SignIn=function(req,res){
 
     if(req.isAuthenticated()){
-       return res.redirect('/user/profile');
+       return res.redirect('/users/profile');
     }
     return res.render('user_sign_in',{
         title:'User-SignIn'
@@ -19,7 +19,7 @@ module.exports.SignIn=function(req,res){
 //Render The Sign-Up page
 module.exports.SignUp=function(req,res){
     if(req.isAuthenticated()){
-      return res.redirect('/user/profile');
+      return res.redirect('/users/profile');
     }
     res.render('user_sign_up',{
         title:'User-SignUp'
@@ -38,7 +38,7 @@ module.exports.create=function(req,res){
             User.create(req.body,function(err,user){
                 if(err){console.log(chalk.red.inverse('Error  to Createing User in db.')); return }
 
-                return res.redirect('/user/sign-in')
+                return res.redirect('/users/sign-in')
             })
         }else{
             return res.redirect('back')
@@ -59,6 +59,6 @@ module.exports.destroySession = function(req, res){
     //      return res.redirect('/');
     // }
     req.session.destroy((err) => {
-        return res.redirect('/user/sign-in') // will always fire after session is destroyed
+        return res.redirect('/users/sign-in') // will always fire after session is destroyed
       })
 }
