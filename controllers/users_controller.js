@@ -2,9 +2,13 @@ const User=require('../models/user')
 const chalk=require('chalk')
 
 module.exports.user=function(req,res){
-    return res.render('user_profile',{
-        title:'User-SignIn'
+    User.findById(req.params.id,function(err,user){
+        return res.render('user_profile',{
+            title:'User-SignIn',
+            profile_user:user
+        })
     })
+    
 }
 //Render The Sign-In page
 module.exports.SignIn=function(req,res){

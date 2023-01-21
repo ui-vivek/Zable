@@ -1,5 +1,6 @@
 // module.exports.actionName=function(req,res){----}
 const Post=require('../models/post')
+const User=require('../models/user')
 module.exports.home=function(req,res){
     Post.find({}).populate('user')
     .populate({
@@ -8,8 +9,13 @@ module.exports.home=function(req,res){
             path:'user'
         }
     }).exec(function(err, posts){
-        return res.render('home', {
-            title: "Zable | Home",
-            posts: posts
-        });
-})};
+        User.find({},function(err,users){
+            return res.render('home', {
+                title: "Zable | Home",
+                posts: posts,
+                all_users:users
+            });
+        })
+        
+    })
+};

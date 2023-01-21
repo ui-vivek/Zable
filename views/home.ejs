@@ -1,5 +1,5 @@
 <h1>Zable / <%= title %> </h1> 
-<!-- --------------------------------- -->
+
 <section id="feed-post">
   <h4>Post</h4>
   <% if(locals.user){ %> 
@@ -18,4 +18,12 @@
       <% } %> 
     </ul>
   </div>
+</section>
+<section id="user-friends" >
+  <h4>Friends</h4>
+  <% for(u of all_users){ %>
+    <p>
+      <a href="/users/profile/<%= u.id %> "><%= u.name %> </a>
+    </p>
+    <% } %> 
 </section>
