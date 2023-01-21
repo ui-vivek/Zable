@@ -8,7 +8,7 @@
             <input type="text" placeholder="search...">
         </li>
         <% if(locals.user){ %> 
-            <li> <a  href="/users/profile">
+            <li> <a  href="/users/profile/<%= user.id %> ">
                 <%= user.name %>
             </a> </li>
             <li>
