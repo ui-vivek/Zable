@@ -64,6 +64,7 @@ module.exports.create=function(req,res){
 }
 //Sign in and create a session for the user
 module.exports.createSession = function(req, res){
+    req.flash('success','Logged in Succesfully')
     return res.redirect('/');
 }
 
@@ -73,7 +74,9 @@ module.exports.destroySession = function(req, res){
     //      req.logout();
     //      return res.redirect('/');
     // }
-    req.session.destroy((err) => {
-        return res.redirect('/users/sign-in') // will always fire after session is destroyed
-      })
+    req.logout(function(err) {
+    if (err) { return next(err); }
+    req.flash('success', 'You have Logged out');
+    return res.redirect('/');
+    });
 }
