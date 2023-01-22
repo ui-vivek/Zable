@@ -1,29 +1,30 @@
-<h1>Zable / <%= title %> </h1> 
-
-<section id="feed-post">
-  <h4>Post</h4>
-  <% if(locals.user){ %> 
-  <form action="/posts/create" id="new-post-form" method="post">
-    <textarea name="content" cols="30" rows="3" placeholder="Type hear..." required></textarea>
-    <input type="submit" value="Post">
-  </form>
-  <% } %> 
-
-  <div id="posts-list-container">
-    <ul>
-      <% for(post of posts){ %> 
-
-        <%-include('_posts')-%> 
-
-      <% } %> 
-    </ul>
-  </div>
-</section>
-<section id="user-friends" >
-  <h4>Friends</h4>
-  <% for(u of all_users){ %>
-    <p>
-      <a href="/users/profile/<%= u.id %> "><%= u.name %> </a>
-    </p>
+<link rel="stylesheet" href="css/home.css">
+<div id="home-container">
+  <section id="feed-post">
+    <h4>Post</h4>
+    <% if(locals.user){ %> 
+    <form action="/posts/create" id="new-post-form" method="post">
+      <textarea name="content" cols="30" rows="3" placeholder="Type hear..." required></textarea>
+      <input type="submit" value="Post">
+    </form>
     <% } %> 
-</section>
+  
+    <div id="posts-list-container">
+      <ul>
+        <% for(post of posts){ %> 
+  
+          <%-include('_posts')-%> 
+  
+        <% } %> 
+      </ul>
+    </div>
+  </section>
+  <section id="user-friends" >
+    <h4>Friends</h4>
+    <% for(u of all_users){ %>
+      <p>
+        <a href="/users/profile/<%= u.id %> "><%= u.name %> </a>
+      </p>
+      <% } %> 
+  </section>
+</div>
