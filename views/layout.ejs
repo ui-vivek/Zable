@@ -29,11 +29,20 @@
                     layout: 'topRight',
                     timeout:1500
                     }).show();
+            <% } %>             
+            <% if(flash.info && flash.info.length>0){ %> 
+                new Noty({
+                    theme:'metroui',
+                    text: "<%= flash.info %>",
+                    type: 'info',
+                    layout: 'topRight',
+                    timeout:1500
+                    }).show();
             <% } %> 
             <% if(flash.error && flash.error.length>0){ %> 
                 new Noty({
                     theme:'metroui',
-                    text: "<%= flash.success %>",
+                    text: "<%= flash.error %>",
                     type: 'error',
                     layout: 'topRight',
                     timeout:1500
