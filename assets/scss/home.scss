@@ -3,12 +3,20 @@
     #feed-post{
         width: 70%;
         padding: 10px;
+        ul{
+            li{
+                list-style: none;
+            }
+        }
     }
     #user-friends{
         width: 30%;
         padding: 10px;
-        border-left: 1px solid lightgray;
+        border-left: 1px solid gray;
         height: 100%;
         background-color: lightblue;
+        a:link, a:visited{
+            text-decoration: none;
+        }
     }
 }

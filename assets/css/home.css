@@ -7,10 +7,18 @@
   padding: 10px;
 }
 
+#home-container #feed-post ul li {
+  list-style: none;
+}
+
 #home-container #user-friends {
   width: 30%;
   padding: 10px;
-  border-left: 1px solid lightgray;
+  border-left: 1px solid gray;
   height: 100%;
   background-color: lightblue;
+}
+
+#home-container #user-friends a:link, #home-container #user-friends a:visited {
+  text-decoration: none;
 }
