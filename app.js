@@ -27,6 +27,9 @@ app.use(express.urlencoded()) // encode the req
 app.use(cookieParser())
 
 app.use(express.static(path.join(__dirname, 'assets')));
+//make uploads path available to the browser
+app.use('/uploads',express.static(__dirname + '/uploads'))
+
 // app.use(express.static('./assets'));
 app.use(expressLayouts)
 //extract style and scripts form the sub pages into the layout
