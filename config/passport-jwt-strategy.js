@@ -6,7 +6,7 @@ const User=require('../models/user');
 
 let opts={
     jwtFromRequest:ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey :'Zable'
+    secretOrKey :`${process.env.secretOrKey}`
 }
 
 passport.use(new JWTStrategy(opts,function(jwtPayLoad,done){

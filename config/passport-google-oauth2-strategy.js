@@ -5,9 +5,9 @@ const User=require('../models/user');
 
 
 passport.use(new googleStrategy({
-        clientID:"569961070399-k1r78vudtqlbrto64soja1qp064cg0h8.apps.googleusercontent.com",
-        clientSecret:"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",
-        callbackURL:"http://localhost:8000/users/auth/google/callback"
+        clientID:`${process.env.clientID_URI}`,
+        clientSecret:`${process.env.clientSecret_URI}`,
+        callbackURL:`${process.env.callbackURL_URI}`
     },
     function(accessToken,refreshToken,profile,done){
         User.findOne({email:profile.emails[0].value}).exec(function(err,user){
