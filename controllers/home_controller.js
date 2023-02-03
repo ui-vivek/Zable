@@ -10,14 +10,19 @@ module.exports.home= async function(req,res){
             path:'comments',
             populate:{
                 path:'user'
+            },
+            populate:{
+                path:'likes'
             }
-        });
+        }).populate('comments')
+        .populate('likes');
+
         let users= await User.find({})
-            return res.render('home', {
-                title: "Zable | Home",
-                posts: posts,
-                all_users:users
-            });
+        return res.render('home', {
+            title: "Zable | Home",
+            posts: posts,
+            all_users:users
+        });
 
     }catch(err){
         console.log("Error",err);
