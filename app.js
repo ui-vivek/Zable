@@ -1,5 +1,6 @@
 const express=require('express')
 require('dotenv').config()
+const logger=require('morgan')
 const path = require('path')
 const cookieParser=require('cookie-parser')
 const chalk=require('chalk');
@@ -7,6 +8,8 @@ const port=process.env.PORT;
 const app=express();
 const expressLayouts=require('express-ejs-layouts')
 const db=require('./config/mongoose')
+const rfs=require('rotating-file-stream')
+const fs=require('fs');
 
 // Used for session cookies
 const session=require('express-session')
@@ -19,19 +22,38 @@ const sassMiddleware=require('node-sass-middleware')
 const flash=require('connect-flash');
 const customMware=require('./config/middleware');
 
+const logDirectory=path.join(__dirname,'./production_log');
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+// Create a rotating write stream
+const requestLogStream = rfs.createStream('request.log', {
+    interval: '1d', // Rotate daily
+    maxFiles: 30, // Maximum number of rotated files to keep in storage
+    path:logDirectory
+  });
+  
+  // Log API requests in the Apache combined format to one log file per day
+  app.use(logger('combined',
+  {
+    stream: requestLogStream,
+  })
+)
 // setup the chat server to be used with socket.io
 const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log(chalk.inverse.cyanBright('chat server is listening on port 5000.'));
 
-app.use(sassMiddleware({
-    src:'./assets/scss',
-    dest: './assets/css',
-    debug:true,
-    outputStyle:'expanded',
-    prefix:'/css'
-}))
+if(process.env.mode=='development'){
+    app.use(sassMiddleware({
+        src:'./assets/scss',
+        dest: './assets/css',
+        debug:true,
+        outputStyle:'expanded',
+        prefix:'/css'
+    }))
+}
+
 app.use(express.urlencoded()) // encode the req 
 app.use(cookieParser())
 
