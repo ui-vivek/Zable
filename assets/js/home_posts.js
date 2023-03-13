@@ -42,7 +42,7 @@
             <p>
                 
                 <small>
-                    <a class="delete-post-button"  href="/posts/destroy/${ post._id }">X</a>
+                    <a class="delete-post-button"  href="/posts/destroy/${ post._id }"><i class='bx bx-trash'></i></a>
                 </small>
                 
                 ${ post.content }
