@@ -53,7 +53,7 @@
                 <br>
                 <small>
             <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post ">
-                0
+                <i class='bx bx-like' ></i> 0
             </a>
       </small>
             </p>
